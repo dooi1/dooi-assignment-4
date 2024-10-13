@@ -1,4 +1,4 @@
-name: Python Application
+name: Python application
 
 on:
   push:
@@ -11,6 +11,7 @@ permissions:
 
 jobs:
   build:
+
     runs-on: ubuntu-latest
 
     steps:
@@ -23,14 +24,16 @@ jobs:
         with:
           python-version: "3.10"
 
-      # 3. Install dependencies using Makefile
+      # 3. Navigate to the correct folder and install dependencies
       - name: Install dependencies
         run: |
+          cd assignment4_starter_code
           make install
 
-      # 4. Run the application in the background
+      # 4. Navigate to the folder and run the application in the background
       - name: Run the application
         run: |
+          cd assignment4_starter_code
           make run &
           sleep 10  # Allow the server time to start
 
@@ -42,9 +45,6 @@ jobs:
       # 6. Lint the code with flake8
       - name: Lint with flake8
         run: |
-          # Install flake8 if not included in requirements.txt
           pip install flake8
-          flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
-          flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
-
-      # Removed pytest step
+          flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics --exclude=venv
+          flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics --exclude=venv
