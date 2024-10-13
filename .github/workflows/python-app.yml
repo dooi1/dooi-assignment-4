@@ -17,7 +17,7 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: Set up Python 3.10
-      uses: actions/setup-python@v3
+      uses: actions/setup-python@v4
       with:
         python-version: "3.10"
 
@@ -36,12 +36,4 @@ jobs:
 
     - name: Test with pytest
       run: |
-        pytest
-
-    - name: Install project dependencies using Makefile
-      run: |
-        make install
-
-    - name: Run the application using Makefile
-      run: |
-        make run
+        pytest assignment4_starter_code/  # Adjust this to point to your test folder
