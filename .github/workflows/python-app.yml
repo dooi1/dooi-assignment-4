@@ -35,7 +35,7 @@ jobs:
         run: |
           cd assignment4_starter_code  # Navigate to the folder with the Makefile
           make run &  # Run the Flask application in the background
-          sleep 10  # Give the server some time to start
+          sleep 30  # Give the server some time to start
 
       # 5. Check if the server is running
       - name: Check if the server is running
