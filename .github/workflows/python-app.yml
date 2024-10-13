@@ -24,14 +24,16 @@ jobs:
         with:
           python-version: "3.10"
 
-      # 3. Install dependencies using Makefile
+      # 3. Navigate to the directory and install dependencies using Makefile
       - name: Install dependencies
         run: |
+          cd assignment4_starter_code  # Navigate to the folder with the Makefile
           make install  # This will run `make install` to set up the virtual environment and install dependencies
 
-      # 4. Run the Flask application in the background
+      # 4. Navigate to the directory and run the Flask application in the background
       - name: Run the application
         run: |
+          cd assignment4_starter_code  # Navigate to the folder with the Makefile
           make run &  # This will run the Flask application in the background
           sleep 10  # Give the server some time to start
 
@@ -43,6 +45,7 @@ jobs:
       # 6. Lint the code with flake8
       - name: Lint with flake8
         run: |
+          cd assignment4_starter_code  # Navigate to the folder with the Makefile
           . venv/bin/activate  # Activate the virtual environment
           pip install flake8  # Ensure flake8 is installed
           flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics --exclude=venv
