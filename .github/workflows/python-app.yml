@@ -20,22 +20,24 @@ jobs:
 
       # 2. Set up Python 3.10
       - name: Set up Python 3.10
-        uses: actions/setup-python@v3
+        uses: actions/setup-python@v4
         with:
           python-version: "3.10"
 
-      # 3. Navigate to the correct folder and install dependencies
+      # 3. Install dependencies using Makefile inside the correct folder
       - name: Install dependencies
         run: |
           cd assignment4_starter_code
+          python3 -m venv venv  # Ensure correct venv path
+          . ./venv/bin/activate
           make install
 
-      # 4. Navigate to the folder and run the application in the background
+      # 4. Run the application in the background
       - name: Run the application
         run: |
           cd assignment4_starter_code
           make run &
-          sleep 10  # Allow the server time to start
+          sleep 10  # Give the server some time to start
 
       # 5. Check if the server is running
       - name: Check if server is running
